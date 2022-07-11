@@ -17,5 +17,6 @@ public class DiceNumberTextScript : MonoBehaviour
     void Update()
     {
         text.text = diceNumber.ToString ();
+        //Debug.Log(""+diceNumber);
     }
 }
