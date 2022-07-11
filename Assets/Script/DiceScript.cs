@@ -7,9 +7,11 @@ public class DiceScript : MonoBehaviour
     static Rigidbody rb;
     public static Vector3 diceVelocity;
     public GameObject dice;
-    public float holddownStarttime;
-    bool buttonHoldDown = false;
-    public float power;
+    public RollPower rollPW;
+    //public float holddownStarttime;
+    //bool buttonHoldDown = false;
+    //public float power;
+    public bool isRoll = false;
     void Start()
     {
         rb = GetComponent<Rigidbody> ();
@@ -20,7 +22,7 @@ public class DiceScript : MonoBehaviour
     void Update()
     {
         diceVelocity = rb.velocity;
-        if (buttonHoldDown == true)
+        /*if (buttonHoldDown == true)
         {
             holddownStarttime += Time.deltaTime;
         }
@@ -35,12 +37,13 @@ public class DiceScript : MonoBehaviour
         if(buttonHoldDown == false)
         {
             holddownStarttime = 0;
-        }
+        }*/
+
         
     }
 
 
-    public void HoldButton()
+    /*public void HoldButton()
     {
         buttonHoldDown = true;
     }
@@ -49,21 +52,23 @@ public class DiceScript : MonoBehaviour
     {
         buttonHoldDown = false;
         Roll();
-    }
+        //isRoll = true;
+    }*/
 
 
 
     public void Roll() 
         {
             dice.SetActive(true);
-            holddownStarttime = Time.time;
+            rollPW.holddownStarttime = Time.time;
             DiceNumberTextScript.diceNumber = 0;
             float dirX = Random.Range (0, 500);
             float dirY = Random.Range (0, 500);
             float dirZ = Random.Range (0, 500);
-            transform.position = new Vector3 (0, 3, 0);
+            transform.position = new Vector3 (0, 19, 0);
             transform.rotation = Quaternion.identity;
-            rb.AddForce (transform.up * power);
+            rb.AddForce (transform.up * rollPW.power);
             rb.AddTorque (dirX, dirY, dirZ);
+            isRoll = true;
         }
 }
