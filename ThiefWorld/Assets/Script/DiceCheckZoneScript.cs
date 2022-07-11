@@ -5,10 +5,25 @@ using UnityEngine;
 public class DiceCheckZoneScript : MonoBehaviour
 {
     Vector3 diceVelocity;
+    public int dicePoint;
+    public GameObject dice;
+    public DiceScript diceScript;
 
     void FixedUpdate()
     {
         diceVelocity = DiceScript.diceVelocity;
+        
+        //dicePoint = DiceNumberTextScript.diceNumber;
+        if(DiceNumberTextScript.diceNumber > 0)
+        {
+            //dicePoint = DiceNumberTextScript.diceNumber;
+            dice.SetActive(false);
+            diceScript.isRoll = false;
+        }
+        if(diceScript.isRoll == false)
+        {
+            dicePoint = 0;
+        }
     }
 
     void OnTriggerStay(Collider col) 
@@ -19,21 +34,27 @@ public class DiceCheckZoneScript : MonoBehaviour
             {
                 case "Side1":
                     DiceNumberTextScript.diceNumber = 6;
+                    dicePoint = 6;
                     break;
                 case "Side2":
                     DiceNumberTextScript.diceNumber = 5;
+                    dicePoint = 5;
                     break;
                 case "Side3":
                     DiceNumberTextScript.diceNumber = 4;
+                    dicePoint = 4;
                     break;
                 case "Side4":
                     DiceNumberTextScript.diceNumber = 3;
+                    dicePoint = 3;
                     break;
                 case "Side5":
                     DiceNumberTextScript.diceNumber = 2;
+                    dicePoint = 2;
                     break;
                 case "Side6":
                     DiceNumberTextScript.diceNumber = 1;
+                    dicePoint = 1;
                     break;
             }
         }   
