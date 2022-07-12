@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Boat : MonoBehaviourPunCallbacks
+public class BoatScript : MonoBehaviourPunCallbacks
 {
     public RouteScript currentRoute;
 
@@ -19,21 +19,21 @@ public class Boat : MonoBehaviourPunCallbacks
 
     bool isMoving;
 
-    public GameObject route;
+    /*public GameObject route;
     public GameObject DiceCheckZone;
-    public GameObject Dice;
+    public GameObject Dice;*/
     
 
-    void Awake() {
+    void Start() {
         photonView = GetComponent<PhotonView>();
-        currentRoute = GetComponent<RouteScript>();
-        diceCheck = GetComponent<DiceCheckZoneScript>();
-        diceSc = GetComponent<DiceScript>();
+        currentRoute = GameObject.Find("Route").GetComponent<RouteScript>();
+        diceCheck = GameObject.Find("DiceCheckZone").GetComponent<DiceCheckZoneScript>();
+        //diceSc = GameObject.Find("Dice").GetComponent<DiceScript>();
     }   
 
     void Update() 
     {
-        
+        diceSc = GameObject.Find("Dice").GetComponent<DiceScript>();
         //steps = diceCheck.dicePoint;
         if(diceSc.isRoll == true && !isMoving)
         //if(Input.GetKeyDown(KeyCode.Space) && !isMoving)
