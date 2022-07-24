@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class Route : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Transform[] childObject;
+    public List<Transform> childNodeList = new List<Transform>();
+
+    void OnDrawGizmos()
     {
-        
+        Gizmos.color = Color.green;
+
+        FillNode();
+        for (int i = 0; i < childNodeList.Count; i++)
+        {
+            Vector3 currentPos = childNodeList[i].position;
+            if (i > 0)
+            {
+                Vector3 prevPos = childNodeList[i - 1].position;
+                Gizmos.DrawLine(prevPos, currentPos);
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void FillNode()
     {
-        
+        childNodeList.Clear();
+        childObject = GetComponentsInChildren<Transform>();
+        foreach (Transform child in childObject)
+        {
+            if (child != this.transform)
+            {
+                childNodeList.Add(child);
+            }
+        }
     }
 }
