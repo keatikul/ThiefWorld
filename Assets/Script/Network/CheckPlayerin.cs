@@ -24,11 +24,11 @@ public class CheckPlayerin : MonoBehaviourPunCallbacks
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        player ++;
-        if (player >= 4)
+        if (newPlayer.ActorNumber > 1)
         {
-            Debug.Log("Room is full");
+            player = newPlayer.ActorNumber;
         }
+        Debug.Log($"player id: {newPlayer.ActorNumber}");
         Debug.Log("Player Enter Room");
         base.OnPlayerEnteredRoom(newPlayer);
     }
@@ -37,5 +37,6 @@ public class CheckPlayerin : MonoBehaviourPunCallbacks
     {
         Debug.Log("Player Left.");
         base.OnPlayerLeftRoom(otherPlayer);
+
     }
 }

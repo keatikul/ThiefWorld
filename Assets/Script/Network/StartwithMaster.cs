@@ -3,25 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-using UnityEngine.SceneManagement;
 
-public class FinishPoint : MonoBehaviourPunCallbacks
+public class StartwithMaster : MonoBehaviour
 {
-
-
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
-
     // Update is called once per frame
     void Update()
     {
-        if (BoatScript.instanceBoat.steps == 100)
+        if(ReadyandStart.instantiateRaS._Start == true)
         {
-            PhotonNetwork.LoadLevel(6);
+            PhotonNetwork.LoadLevel(5);
         }
     }
-
 }

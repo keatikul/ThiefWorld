@@ -81,7 +81,7 @@ public class BoatScript : MonoBehaviourPunCallbacks
 
         }
 
-        if (RouteScript.instanceRoute.childNodeList[routePosition].name == "Cube40(SpecialPoint)")
+        if (RouteScript.instanceRoute.childNodeList[routePosition].name == "Cube100(Finish)")
         {
             GotoScore();
             OnLeftRoom();
