@@ -1,88 +1,105 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
+using UnityEngine.SceneManagement;
 
-public class Boat : MonoBehaviourPunCallbacks
+
+public class Boat : MonoBehaviour
 {
-    public RouteScript currentRoute;
-
-    public DiceCheckZoneScript diceCheck;
-
-    public DiceScript diceSc;
-
-    public PhotonView photonView;
-
-    int routePosition;
-
-    public int steps;
-
-    bool isMoving;
-
-    public GameObject route;
-    public GameObject DiceCheckZone;
-    public GameObject Dice;
     
+    public int Playerpoint = 0;
+    public int routePosition;
+    public int steps;
+    public bool isMoving;
+    public static Boat instanceBoatt;
+    private Camera cam;
+    public int number;
 
-    void Awake() {
-        photonView = GetComponent<PhotonView>();
-        currentRoute = GetComponent<RouteScript>();
-        diceCheck = GetComponent<DiceCheckZoneScript>();
-        diceSc = GetComponent<DiceScript>();
-    }   
 
-    void Update() 
+    void Start()
     {
-        
-        //steps = diceCheck.dicePoint;
-        if(diceSc.isRoll == true && !isMoving)
-        //if(Input.GetKeyDown(KeyCode.Space) && !isMoving)
+        Debug.Log("Boat Script Start");
+        //Debug.Log("Number turn:" + number);
+        MakeSingleton();
+    }
+
+
+    void MakeSingleton()
+    {
+        if (instanceBoatt == null)
         {
-            steps = diceCheck.dicePoint;
-            //steps = Random.Range(1,7);
-            //steps = 6;
+            instanceBoatt = this;
+        }
+    }
+
+    void Update()
+    {
+        //CharacterMoveWithTurn();
+        if (RouteScript.instanceRoute.childNodeList[routePosition].name == "Cube100(Finish)")
+        {
+            GotoScore();
+        }
+    }
+
+    public void CharacterMoveWithTurn()
+    {
+        { 
+            steps = PowerUp.instancePowerUp.dicepoint;
             Debug.Log("Dice Roll" + steps);
-            Debug.Log("Routeposition"+routePosition+steps);
-            StartCoroutine(Move());
-            if(routePosition+steps <= currentRoute.childNodeList.Count)
+            StartCoroutine(Move(steps));
+            if (routePosition + steps <= RouteScript.instanceRoute.childNodeList.Count)
             {
-                StartCoroutine(Move());
-                //Debug.Log(""Move);
+                StartCoroutine(Move(steps));
             }
             else
             {
                 Debug.Log("nani");
             }
         }
+            
+    }
+    
+
+
+    public void StopMove()
+    {
+        steps = 0;
     }
 
-    IEnumerator Move()
+    public void GotoScore()
     {
-        if(isMoving)
+
+        SceneManager.LoadScene("Score");
+    }
+
+    IEnumerator Move(int steps)
+    {
+        if (isMoving)
         {
+            PowerUp.instancePowerUp.dicepoint = 0;
             yield break;
         }
         isMoving = true;
 
-        while(steps > 0)
-        {
-            //routePosition++;
-            //routePosition %= currentRoute.childNodeList.Count;
 
-            Vector3 nextPos = currentRoute.childNodeList[routePosition+1].position;
-            while(MovetoNextNode(nextPos)){yield return null;}
+        while (steps > 0)
+        {
+            Vector3 nextPos = RouteScript.instanceRoute.childNodeList[routePosition + 1].position;
+            Debug.Log(RouteScript.instanceRoute.childNodeList[routePosition + 1].name);
+            transform.LookAt(nextPos);
+            while (MovetoNextNode(nextPos)) { yield return null; }
 
             yield return new WaitForSeconds(0.1f);
             steps -= 1;
-            Debug.Log(""+steps);
+            Debug.Log("" + steps);
             routePosition++;
         }
 
         isMoving = false;
     }
-
     bool MovetoNextNode(Vector3 goal)
     {
-        return goal != (transform.position = Vector3.MoveTowards(transform.position, goal, 8f * Time.deltaTime));
+        return goal != (transform.position = Vector3.MoveTowards(transform.position, goal, 1000f * Time.deltaTime));
     }
 }
+
