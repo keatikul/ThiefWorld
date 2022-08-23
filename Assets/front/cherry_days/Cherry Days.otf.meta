@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a9322595d1b13ce49ac690f1ccd4203e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Cherry Days
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 265a780d0f0fd8545bedac156a175fea, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
