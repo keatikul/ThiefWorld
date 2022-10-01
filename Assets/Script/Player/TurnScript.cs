@@ -13,11 +13,30 @@ public class TurnScript : MonoBehaviourPunCallbacks
     public bool player4;
     public float timeValue = 7f;
     //public int PhotonPlayer;
+    public bool MyfunctionCalled = false;
 
     public Player Player { get; private set; }
     void Start()
     {
-        Debug.Log("Start 1st Phase");
+        /*if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+        {
+            player1 = PhotonNetwork.LocalPlayer.ActorNumber == 1;
+            Debug.Log("Player1 here:" + player1);
+        }
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
+        {
+            player2 = PhotonNetwork.LocalPlayer.ActorNumber == 2;
+            Debug.Log("Player2 here:" + player2) ;
+        }
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 3)
+        {
+            player3 = PhotonNetwork.LocalPlayer.ActorNumber == 3;
+        }
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 4)
+        {
+            player4 = PhotonNetwork.LocalPlayer.ActorNumber == 4;
+        }*/
+        //Debug.Log("Start 1st Phase");
         //player1 = true;
         //PhotonNetwork.playerList.Length;
         //CheckPlayerin.instantiateCheck.;
@@ -27,8 +46,33 @@ public class TurnScript : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Coun of Player:" + PhotonNetwork.PlayerList.Length);
+        
+        if (MyfunctionCalled == false)
+        {
+            MyfunctionCalled = true;
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+        {
+                player1 = PhotonNetwork.LocalPlayer.ActorNumber == 1;
+                player1 = true;
+                Debug.Log("Player1 here:" + player1);
+        }
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
+        {
+            player2 = PhotonNetwork.LocalPlayer.ActorNumber == 2;
+            Debug.Log("Player2 here:" + player2) ;
+        }
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 3)
+        {
+            player3 = PhotonNetwork.LocalPlayer.ActorNumber == 3;
+        }
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 4)
+        {
+            player4 = PhotonNetwork.LocalPlayer.ActorNumber == 4;
+        }
+        }
 
+        //Debug.Log("Coun of Player:" + PhotonNetwork.PlayerList.Length);
+       
         if (player1 == true)
         {
             if (timeValue > 0)

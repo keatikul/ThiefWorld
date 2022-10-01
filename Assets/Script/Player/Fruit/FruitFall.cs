@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class FruitFall : MonoBehaviour
 {
-    public bool PlayerStay = false;
     public static FruitFall instantiateFruitFall;
+    public List<Boat> boats = new List<Boat>();
     void Start()
     {
         MakeSingleton();
+        //TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
     }
     void MakeSingleton()
     {
@@ -18,19 +19,58 @@ public class FruitFall : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnSelectButton1()
     {
-        if (other.gameObject.tag == "Player")
+        if (boats[0].ProtectEffect == true)
         {
-            PlayerStay = true;
+            Debug.Log("Got Protect1");
+            boats[0].ProtectEffect = false;
+        }
+        else
+        {
+            boats[0].Playerpoint -= 2;
+        }
+
+    }
+    public void OnSelectButton2()
+    {
+        if (boats[1].ProtectEffect == true)
+        {
+            Debug.Log("Got Protect2");
+            //boats[1].Playerpoint-=1;
+            boats[1].ProtectEffect = false;
+        }
+        else
+        {
+            boats[1].Playerpoint -= 2;
         }
     }
-
-    private void OnTriggerExit(Collider other)
+    public void OnSelectButton3()
     {
-        if (other.gameObject.tag == "Player")
+        if (boats[2].ProtectEffect == true)
         {
-            PlayerStay = false;
+            Debug.Log("Got Protect3");
+            //boats[2].Playerpoint-=1;
+
+            boats[2].ProtectEffect = false;
+        }
+        else
+        {
+            boats[2].Playerpoint -= 2;
+        }
+    }
+    public void OnSelectButton4()
+    {
+        if (boats[3].ProtectEffect == true)
+        {
+            Debug.Log("Got Protect4");
+            //boats[3].Playerpoint-=1;
+     
+            boats[3].ProtectEffect = false;
+        }
+        else
+        {
+            boats[3].Playerpoint -= 2;
         }
     }
 }

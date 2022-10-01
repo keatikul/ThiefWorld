@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using ExitGames.Client.Photon;
 
 public class BoatScript : MonoBehaviourPunCallbacks
 {
 
     public PhotonView photonView;
 
-    int routePosition;
+    public int Playerpoint = 10;
+    public int routePosition;
 
+    //int i;
+
+    public GameObject Boat;
     public int steps;
 
-    bool isMoving;
+    public bool isMoving;
 
     public static BoatScript instanceBoat;
 
@@ -27,8 +32,9 @@ public class BoatScript : MonoBehaviourPunCallbacks
     public GameObject Dice;*/
 
 
-    void Awake()
+    void Start()
     {
+        Debug.Log("Boat Script Start");
         photonView = GetComponent<PhotonView>();
         PhotonNetwork.AutomaticallySyncScene = true;
         MakeSingleton();
@@ -36,14 +42,19 @@ public class BoatScript : MonoBehaviourPunCallbacks
         //diceSc = GameObject.Find("Dice").GetComponent<DiceScript>();
         if (photonView.IsMine)
         {
+            Debug.Log("" + PhotonNetwork.IsMasterClient);
+            //PhotonNetwork.MasterClient.Get(1);
+            Debug.Log("ActorNumber" + PhotonNetwork.LocalPlayer.ActorNumber);
             BoatScript.LocalPlayerInstance = this.gameObject;
         }
         DontDestroyOnLoad(this.gameObject);
         if (!photonView.IsMine)
         {
+           
             //Destroy(cam);
-            cam.enabled = false;
+            //cam.enabled = false;
         }
+        
     }
 
 
@@ -86,6 +97,10 @@ public class BoatScript : MonoBehaviourPunCallbacks
             GotoScore();
             OnLeftRoom();
         }
+        /*if (FruitRandom.instantiateFruit.Fruitname == "apple")
+        {
+            Debug.Log("Finally i got fruit");
+        }*/
     }
 
     public override void OnLeftRoom()
@@ -115,6 +130,7 @@ public class BoatScript : MonoBehaviourPunCallbacks
 
                 Vector3 nextPos = RouteScript.instanceRoute.childNodeList[routePosition + 1].position;
                 Debug.Log(RouteScript.instanceRoute.childNodeList[routePosition + 1].name);
+                transform.LookAt(nextPos);
                 while (MovetoNextNode(nextPos)) { yield return null; }
 
                 yield return new WaitForSeconds(0.1f);

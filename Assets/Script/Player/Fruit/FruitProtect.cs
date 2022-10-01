@@ -9,6 +9,7 @@ public class FruitProtect : MonoBehaviour
     void Start()
     {
         MakeSingleton();
+        TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
     }
     void MakeSingleton()
     {

@@ -63,7 +63,7 @@ public class FruitRandom : MonoBehaviour
                         
                     }
                 }
-
+            {
                 /*if (NewFruit[index].name == "avocado")
                 { 
                     if (avocado != 0)
@@ -144,6 +144,7 @@ public class FruitRandom : MonoBehaviour
                         Debug.Log("watermelon is full");
                     }
                 }*/
+            }
             }
         
         
