@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TurnScriptSinglePlay : MonoBehaviour
 {
@@ -63,26 +64,9 @@ public class TurnScriptSinglePlay : MonoBehaviour
     public int randomNumber;
     //public List<int> numberPot = new List<int>();
 
-    /*//Steal Button
-    public GameObject btsteal1;
-    public GameObject btsteal2;
-    public GameObject btsteal3;
-    public GameObject btsteal4;
+    
 
-
-    //Fall Button
-    public GameObject btfall1;
-    public GameObject btfall2;
-    public GameObject btfall3;
-    public GameObject btfall4;
-
-    //Stole Button
-    public GameObject btstole1;
-    public GameObject btstole2;
-    public GameObject btstole3;
-    public GameObject btstole4;*/
-
-    public Text Turn;
+    public TextMeshProUGUI Turn;
     void Start()
     {
         
@@ -137,23 +121,92 @@ public class TurnScriptSinglePlay : MonoBehaviour
 
     public void ChangeTextTurn()
     {
-        if (checkTurn1 == true)
+        for (int i = 0; i < Numbersboat.Count; i++)
         {
-            //Turn = this;
-            Turn.text = "Turn 1";
+            if (checkTurn1 == true && Players[i].number == 1)
+            {
+                //Turn = this;
+                Turn.text = "Turn "+ Players[i].name;
+                //Debug.Log(Players[i].name);
+                if (Players[i].name == "player1")
+                {
+                    Turn.color = Color.red;
+                }
+                if (Players[i].name == "player2")
+                {
+                    Turn.color = Color.green;
+                }
+                if (Players[i].name == "player3")
+                {
+                    Turn.color = Color.yellow;
+                }
+                if (Players[i].name == "player4")
+                {
+                    Turn.color = Color.blue;
+                }
+            }
+            if (checkTurn2 == true && Players[i].number == 2)
+            {
+                Turn.text = "Turn Player 2";
+                if (Players[i].name == "player1")
+                {
+                    Turn.color = Color.red;
+                }
+                if (Players[i].name == "player2")
+                {
+                    Turn.color = Color.green;
+                }
+                if (Players[i].name == "player3")
+                {
+                    Turn.color = Color.yellow;
+                }
+                if (Players[i].name == "player4")
+                {
+                    Turn.color = Color.blue;
+                }
+            }
+            if (checkTurn3 == true && Players[i].number == 3)
+            {
+                Turn.text = "Turn Player 3";
+                if (Players[i].name == "player1")
+                {
+                    Turn.color = Color.red;
+                }
+                if (Players[i].name == "player2")
+                {
+                    Turn.color = Color.green;
+                }
+                if (Players[i].name == "player3")
+                {
+                    Turn.color = Color.yellow;
+                }
+                if (Players[i].name == "player4")
+                {
+                    Turn.color = Color.blue;
+                }
+            }
+            if (checkTurn4 == true && Players[i].number == 4)
+            {
+                Turn.text = "Turn Player 4";
+                if (Players[i].name == "player1")
+                {
+                    Turn.color = Color.red;
+                }
+                if (Players[i].name == "player2")
+                {
+                    Turn.color = Color.green;
+                }
+                if (Players[i].name == "player3")
+                {
+                    Turn.color = Color.yellow;
+                }
+                if (Players[i].name == "player4")
+                {
+                    Turn.color = Color.blue;
+                }
+            }
         }
-        if (checkTurn2 == true)
-        {
-            Turn.text = "Turn 2";
-        }
-        if (checkTurn3 == true)
-        {
-            Turn.text = "Turn 3";
-        }
-        if (checkTurn4 == true)
-        {
-            Turn.text = "Turn 4";
-        }
+        
     }
     void MakeSingleton()
     {
@@ -473,8 +526,15 @@ public class TurnScriptSinglePlay : MonoBehaviour
     public void BotRoll()
     {
         botroll = Random.Range(1, 7);
+        
         Debug.Log("Bot Roll" + botroll);
-
+        for (int i = 0; i < Players.Length; i++)
+        {
+            if (checkTurn1 == true && Players[i].number == 1)
+            {
+                Players[i].steps = botroll;
+            }
+        }
     }
     public void SimpleRandom()
     {
@@ -794,143 +854,6 @@ public class TurnScriptSinglePlay : MonoBehaviour
         timeValue = 15f;
         PlayerClick = false;
     }
-
-    /*public void ActionFruitSteal()
-    {
-        //Steal
-        //Player Click Whoever -1 point
-        //Player in turn +1 point
-        //After Player Click EndTurn
-        //if (checkTurn2 == false && checkTurn3 == false && checkTurn4 == false) 
-        //{
-            if (checkTurn1 == true && Players[0].number == 1 && Players[0].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(false);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn1 == true && Players[1].number == 1 && Players[1].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(false);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn1 == true && Players[2].number == 1 && Players[2].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(false);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn1 == true && Players[3].number == 1 && Players[3].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(false);
-            }
-        //}
-
-        //if (checkTurn1 == false && checkTurn3 == false && checkTurn4 == false) 
-        //{ 
-            if (checkTurn2 == true && Players[0].number == 2 && Players[0].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(false);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn2 == true && Players[1].number == 2 && Players[1].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(false);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn2 == true && Players[2].number == 2 && Players[2].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(false);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn2 == true && Players[3].number == 2 && Players[3].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(false);
-            }
-        //}
-
-        //if (checkTurn1 == false && checkTurn2 == false && checkTurn4 == false) 
-        //{        
-            if (checkTurn3 == true && Players[0].number == 3 && Players[0].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(false);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn3 == true && Players[1].number == 3 && Players[1].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(false);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn3 == true && Players[2].number == 3 && Players[2].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(false);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn3 == true && Players[3].number == 3 && Players[3].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(false);
-            }
-        //}
-
-        //if (checkTurn1 == false && checkTurn2 == false && checkTurn3 == false) 
-        //{
-            if (checkTurn4 == true && Players[0].number == 4 && Players[0].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(false);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn4 == true && Players[1].number == 4 && Players[1].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(false);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn4 == true && Players[2].number == 4 && Players[2].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(false);
-                btsteal4.SetActive(true);
-            }
-            if (checkTurn4 == true && Players[3].number == 4 && Players[3].FruitName1 == "apple(Clone)")
-            {
-                btsteal1.SetActive(true);
-                btsteal2.SetActive(true);
-                btsteal3.SetActive(true);
-                btsteal4.SetActive(false);
-            }
-        //}
-
-    }*/
-
     }
 
     
