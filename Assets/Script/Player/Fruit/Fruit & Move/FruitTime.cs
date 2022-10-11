@@ -6,6 +6,11 @@ public class FruitTime : MonoBehaviour
 {
     public static FruitTime instantiateFruitTime;
     public List<Boat> boats = new List<Boat>();
+    public Timer time;
+    public void ChangeTime()
+    {
+        time.timeValue = 7f;
+    }
     void Start()
     {
         MakeSingleton();
@@ -16,6 +21,16 @@ public class FruitTime : MonoBehaviour
         if (instantiateFruitTime == null)
         {
             instantiateFruitTime = this;
+        }
+    }
+
+    private void Update()
+    {
+        if (time.timeValue == 0)
+        {
+            TimeEffect();
+            time.timeValue = 7f;
+            TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
         }
     }
 
@@ -35,6 +50,7 @@ public class FruitTime : MonoBehaviour
                     if (boats[i].number == 1)
                     {
                         boats[i].MoveBack3();
+                        TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
                     }
                 }
                 if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true)
@@ -42,6 +58,7 @@ public class FruitTime : MonoBehaviour
                     if (boats[i].number == 2)
                     {
                         boats[i].MoveBack3();
+                        TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
                     }
                 }
                 if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true)
@@ -49,6 +66,7 @@ public class FruitTime : MonoBehaviour
                     if (boats[i].number == 3)
                     {
                         boats[i].MoveBack3();
+                        TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
                     }
                 }
                 if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true)
@@ -56,6 +74,7 @@ public class FruitTime : MonoBehaviour
                     if (boats[i].number == 4)
                     {
                         boats[i].MoveBack3();
+                        TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
                     }
                 }
             }

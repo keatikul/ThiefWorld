@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class Boat : MonoBehaviour
 {
-    
+    public bool Bot = false;
+
+
     public int Playerpoint;
     public int routePosition;
     public int steps;
@@ -15,6 +18,7 @@ public class Boat : MonoBehaviour
     public static Boat instanceBoatt;
     private Camera cam;
     public int number;
+    public int numberboat;
 
     public bool PlayerStay;
     public bool FinishGame;
@@ -33,12 +37,14 @@ public class Boat : MonoBehaviour
 
     public bool addplayerpoint;
     private bool checkloop = true;
-    public Text Score;
-    public Text Position;
+    public TextMeshProUGUI Score;
+    public TextMeshProUGUI Position;
 
     public bool ProtectEffect;
     public bool SirenEffect;
     public bool FreezeEffect;
+
+    public bool boolBotMove;
     
 
 
@@ -51,6 +57,7 @@ public class Boat : MonoBehaviour
         {
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(true);
         }*/
+        //BotMove();
         
     }
 
@@ -64,7 +71,7 @@ public class Boat : MonoBehaviour
             FruitName1 = other.gameObject.name;
             
         }
-        Debug.Log("isMoving: "+isMoving);
+        //Debug.Log("isMoving: "+isMoving);
         //FruitName1 = other.gameObject.name;
         
         /*else
@@ -125,19 +132,52 @@ public class Boat : MonoBehaviour
         //CharacterMoveWithTurn();
         if (RouteScript.instanceRoute.childNodeList[routePosition].name == "Cube100(Finish)")
         {
-            GotoScore();
+            Playerpoint +=5;
             FinishGame = true;
+            if (number == 1)
+            {
+                PlayerPrefs.SetInt("PointPlayer1", Playerpoint);
+            }
+            if (number == 2)
+            {
+                PlayerPrefs.SetInt("PointPlayer2", Playerpoint);
+            }
+            if (number == 3)
+            {
+                PlayerPrefs.SetInt("PointPlayer3", Playerpoint);
+            }
+            if (number == 4)
+            {
+                PlayerPrefs.SetInt("PointPlayer4", Playerpoint);
+            }
+            GotoScore();
         }
         Score.text = Playerpoint.ToString();
         Position.text = routePosition.ToString();
         
-
     }
 
     public void CharacterMoveWithTurn()
     {
         { 
-            steps = PowerUp.instancePowerUp.dicepoint;
+            if (Bot == true && boolBotMove == false)
+            {
+                this.steps = Random.Range(1, 7);
+                TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
+                StartCoroutine(BotMove(steps));
+                if (routePosition + steps <= RouteScript.instanceRoute.childNodeList.Count)
+                {
+                    StartCoroutine(BotMove(steps));
+                }
+                else
+                {
+                    Debug.Log("nani");
+                }
+            }
+            else
+            {
+                steps = PowerUp.instancePowerUp.dicepoint;
+            }
             //Debug.Log("Dice Roll" + steps);
             StartCoroutine(Move(steps));
             if (routePosition + steps <= RouteScript.instanceRoute.childNodeList.Count)
@@ -151,6 +191,52 @@ public class Boat : MonoBehaviour
             
         }
             
+    }
+
+    public void BotMove()
+    {
+        if (Bot == true && boolBotMove == false)
+        {
+            this.steps = Random.Range(1, 7);
+            TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
+            StartCoroutine(BotMove(steps));
+            if (routePosition + steps <= RouteScript.instanceRoute.childNodeList.Count)
+            {
+                StartCoroutine(BotMove(steps));
+            }
+            else
+            {
+                Debug.Log("nani");
+            }
+        }
+    }
+
+    IEnumerator BotMove(int steps)
+    {
+        boolBotMove = true;
+        if (isMoving)
+        {
+            PowerUp.instancePowerUp.dicepoint = 0;
+            yield break;
+        }
+        isMoving = true;
+
+
+        while (steps > 0)
+        {
+            Vector3 nextPos = RouteScript.instanceRoute.childNodeList[routePosition + 1].position;
+            //Debug.Log(RouteScript.instanceRoute.childNodeList[routePosition + 1].name);
+            transform.LookAt(nextPos);
+            while (MovetoNextNode(nextPos)) { yield return null; }
+
+            yield return //new WaitForSeconds(0.1f);
+            steps -= 1;
+            //Debug.Log("" + steps);
+            routePosition++;
+            checkloop = false;
+        }
+
+        isMoving = false;
     }
 
     public void MoveBack3()
@@ -171,6 +257,7 @@ public class Boat : MonoBehaviour
     IEnumerator Movebackward3(Vector3 nextPos)
     {
         while (MovetoNextNode(nextPos)) { yield return null; }
+        isMoving = false;
     }
 
     public void MoveBack()
@@ -191,6 +278,7 @@ public class Boat : MonoBehaviour
     IEnumerator Movebackward(Vector3 nextPos)
     {
         while (MovetoNextNode(nextPos)) { yield return null; }
+        isMoving = false;
     }
 
     public void StopMove()
@@ -238,7 +326,7 @@ public class Boat : MonoBehaviour
     }
     bool MovetoNextNode(Vector3 goal)
     {
-        return goal != (transform.position = Vector3.MoveTowards(transform.position, goal, 100f * Time.deltaTime));
+        return goal != (transform.position = Vector3.MoveTowards(transform.position, goal, 50f * Time.deltaTime));
     }
 
     public void ActionFruit()
@@ -249,7 +337,7 @@ public class Boat : MonoBehaviour
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
             //Debug.Log("working");
             Playerpoint++;
-            TurnScriptSinglePlay.instantiateTurnsingle.PlayerClick = true;
+            TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
         }
         if (FruitName1 == "apple(Clone)")
         {   
@@ -263,7 +351,7 @@ public class Boat : MonoBehaviour
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
             canvasProtect.SetActive(true);
             Playerpoint++;
-            ProtectEffect = true;
+            //ProtectEffect = true;
             
         }
         if (FruitName1 == "watermelon(Clone)")

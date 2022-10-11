@@ -64,6 +64,8 @@ public class TurnScriptSinglePlay : MonoBehaviour
     public int randomNumber;
     //public List<int> numberPot = new List<int>();
 
+    public Text buttoncanvasText;
+
     
 
     public TextMeshProUGUI Turn;
@@ -241,6 +243,7 @@ public class TurnScriptSinglePlay : MonoBehaviour
         {
             timeEnd = 0;
         }
+        
     }
 
 
@@ -492,6 +495,35 @@ public class TurnScriptSinglePlay : MonoBehaviour
             }*/
         }
         PlayerClick = true;
+        
+        for (int i = 0; i < Players.Length; i++)
+        {
+            if (Players[i].number == 1 && checkTurn1 == false)
+            {
+                Players[i].boolBotMove = false;
+                buttoncanvasText.text = "Roll";
+                Players[i].isMoving = false;
+            }
+            if (Players[i].number == 2 && checkTurn2 == false)
+            {
+                Players[i].boolBotMove = false;
+                buttoncanvasText.text = "Roll";
+                Players[i].isMoving = false;
+            }
+            if (Players[i].number == 3 && checkTurn3 == false)
+            {
+                Players[i].boolBotMove = false;
+                buttoncanvasText.text = "Roll";
+                Players[i].isMoving = false;
+            }
+            if (Players[i].number == 4 && checkTurn4 == false)
+            {
+                Players[i].boolBotMove = false;
+                buttoncanvasText.text = "Roll";
+                Players[i].isMoving = false;
+            }
+        }
+
         /*numP2++;
         Debug.Log("Click: "+numP2);*/
         /*if (checkTurn1 == true && timeValue > 0)
@@ -715,6 +747,15 @@ public class TurnScriptSinglePlay : MonoBehaviour
             if (Turn1 == 1 || Turn1 == 2 || Turn1 == 3 || Turn1 == 4)
             {
                 //Start Turn 1
+                /*for (int i = 0; i < Players.Length; i++)
+                {
+                    if (Players[i].number == 1)
+                    {
+                        Players[i].PlayerStay = false;
+                    }
+                    
+                }*/
+                    
                 TimeCount();
                 NumberPlayer();
                 if (Turn1 == 1)
@@ -727,14 +768,21 @@ public class TurnScriptSinglePlay : MonoBehaviour
                 }
                 if (timeValue == 0 && checkTurn1 == true || timeValue > 0 && PlayerClick == true && checkTurn1 == true)
                 {
-                    checkTurn1 = false;
-                    Debug.Log("EndTurn1");
-                    EndTurn();
-                    //timeValue = 15f;
-                    if (buttonCanvas.activeSelf == false)
+                    TimeEnd();
+                    if (timeEnd == 0)
                     {
-                        buttonCanvas.SetActive(true);
+                        timeValue = 0;
+                        checkTurn1 = false;
+                        Debug.Log("EndTurn1");
+                        EndTurn();
+                        //timeValue = 15f;
+                        if (buttonCanvas.activeSelf == false)
+                        {
+                            buttonCanvas.SetActive(true);
+                        }
+                        timeEnd = 3f;
                     }
+                    
                 }
 
 
@@ -749,12 +797,21 @@ public class TurnScriptSinglePlay : MonoBehaviour
             //Debug.Log("checkTurn2 = true");
             if (checkTurn2 == true)
             {
+                
                 //buttonCanvas.SetActive(true);
                 //Debug.Log("this");
                 //timeValue = 15f;
                 //checkTurn1 = false;
                 if (Turn2 == 1 || Turn2 == 2 || Turn2 == 3 || Turn2 == 4)
                 {
+                    /*for (int i = 0; i < Players.Length; i++)
+                    {
+                        if (Players[i].number == 2)
+                        {
+                            Players[i].PlayerStay = false;
+                        }
+
+                    }*/
                     //timeValue = 15f;
                     TimeCount();
                     NumberPlayer();
@@ -764,13 +821,19 @@ public class TurnScriptSinglePlay : MonoBehaviour
                     }
                     if (timeValue == 0 && checkTurn2 == true || timeValue > 0 && PlayerClick == true && checkTurn2 == true)
                     {
-                        Debug.Log("EndTurn2");
-                        checkTurn2 = false;
-                        EndTurn();
-                        //checkTurn3 = true;
-                        if (buttonCanvas.activeSelf == false)
+                        TimeEnd();
+                        if (timeEnd == 0)
                         {
-                            buttonCanvas.SetActive(true);
+                            timeValue = 0;
+                            checkTurn2 = false;
+                            Debug.Log("EndTurn2");
+                            EndTurn();
+                            //timeValue = 15f;
+                            if (buttonCanvas.activeSelf == false)
+                            {
+                                buttonCanvas.SetActive(true);
+                            }
+                            timeEnd = 3f;
                         }
                     }
                 }
@@ -783,6 +846,14 @@ public class TurnScriptSinglePlay : MonoBehaviour
             //buttonCanvas.SetActive(true);
             if (Turn3 == 1 || Turn3 == 2 || Turn3 == 3 || Turn3 == 4)
             {
+                /*for (int i = 0; i < Players.Length; i++)
+                {
+                    if (Players[i].number == 3)
+                    {
+                        Players[i].PlayerStay = false;
+                    }
+
+                }*/
                 TimeCount();
                 NumberPlayer();
                 if (Turn3 == 1)
@@ -791,13 +862,19 @@ public class TurnScriptSinglePlay : MonoBehaviour
                 }
                 if (timeValue == 0 && checkTurn3 == true || timeValue > 0 && PlayerClick == true && checkTurn3 == true)
                 {
-                    Debug.Log("EndTurn3");
-                    checkTurn3 = false;
-                    EndTurn();
-                    //checkTurn4 = true;
-                    if (buttonCanvas.activeSelf == false)
+                    TimeEnd();
+                    if (timeEnd == 0)
                     {
-                        buttonCanvas.SetActive(true);
+                        timeValue = 0;
+                        checkTurn3 = false;
+                        Debug.Log("EndTurn3");
+                        EndTurn();
+                        //timeValue = 15f;
+                        if (buttonCanvas.activeSelf == false)
+                        {
+                            buttonCanvas.SetActive(true);
+                        }
+                        timeEnd = 3f;
                     }
                 }
             }
@@ -810,6 +887,15 @@ public class TurnScriptSinglePlay : MonoBehaviour
             //timeValue = 15f;
             if (Turn4 == 1 || Turn4 == 2 || Turn4 == 3 || Turn4 == 4)
             {
+
+                /*for (int i = 0; i < Players.Length; i++)
+                {
+                    if (Players[i].number == 4)
+                    {
+                        Players[i].PlayerStay = false;
+                    }
+
+                }*/
                 TimeCount();
                 NumberPlayer();
                 if (Turn4 == 1)
@@ -818,14 +904,20 @@ public class TurnScriptSinglePlay : MonoBehaviour
                 }
                 if (timeValue == 0 && checkTurn4 == true || timeValue > 0 && PlayerClick == true && checkTurn4 == true)
                 {
-                    Debug.Log("EndTurn4");
-                    checkTurn4 = false;
-                    EndTurn();
-                    TurnCount++;
-                    //checkTurn4 = true;
-                    if (buttonCanvas.activeSelf == false)
+                    TimeEnd();
+                    if (timeEnd == 0)
                     {
-                        buttonCanvas.SetActive(true);
+                        timeValue = 0;
+                        checkTurn4 = false;
+                        Debug.Log("EndTurn4");
+                        EndTurn();
+                        //timeValue = 15f;
+                        if (buttonCanvas.activeSelf == false)
+                        {
+                            buttonCanvas.SetActive(true);
+                        }
+                        timeEnd = 3f;
+                        TurnCount++;
                     }
                 }
             }

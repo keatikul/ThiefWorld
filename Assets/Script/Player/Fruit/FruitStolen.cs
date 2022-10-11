@@ -6,10 +6,26 @@ public class FruitStolen : MonoBehaviour
 {
     public static FruitStolen instantiateFruitStolen;
     public List<Boat> boats = new List<Boat>();
+    public Timer time;
+    public void ChangeTime()
+    {
+        time.timeValue = 7f;
+    }
     void Start()
     {
         MakeSingleton();
         //TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (time.timeValue == 0)
+        {
+            StolenEffect();
+            time.timeValue = 7f;
+            //Debug.Log("time = 0 auto effect");
+            TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
+        }
     }
     void MakeSingleton()
     {
