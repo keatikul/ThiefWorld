@@ -10,8 +10,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 #if UNITY_2018_3_OR_NEWER
-using PrefabStage = UnityEditor.Experimental.SceneManagement.PrefabStage;
-using PrefabStageUtility = UnityEditor.Experimental.SceneManagement.PrefabStageUtility;
+using PrefabStage = UnityEditor.SceneManagement.PrefabStage;
+using PrefabStageUtility = UnityEditor.SceneManagement.PrefabStageUtility;
 #endif
 
 namespace TextToTMPNamespace
@@ -158,7 +158,7 @@ namespace TextToTMPNamespace
 			}
 
 #if UNITY_2018_3_OR_NEWER
-			PrefabStage openPrefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+			UnityEditor.SceneManagement.PrefabStage openPrefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
 			if( openPrefabStage != null && openPrefabStage.stageHandle.IsValid() && openPrefabStage.scene.isDirty )
 			{
 				EditorGUILayout.HelpBox( "Text To TMP can't work while there are unsaved changes in the Prefab stage.", MessageType.Error );
