@@ -6,8 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    public float timeValue = 90;
+    public static Timer instantiateTimer;
+    public float timeValue;
     public Text timeText;
+
+    public GameObject[] canvas;
+
+    private void Start()
+    {
+        Makesingleton();
+    }
+    void Makesingleton()
+    {
+        if (instantiateTimer == null)
+        {
+            instantiateTimer = this;
+        }
+    }
     void Update()
     {
         if (timeValue > 0)
@@ -22,6 +37,15 @@ public class Timer : MonoBehaviour
         if (timeValue == 0)
         {
             Debug.Log("Time up");
+            for (int i = 0; i < canvas.Length; i++)
+            {
+                if (canvas[i].activeSelf == true)
+                {
+                    canvas[i].SetActive(false);
+                    //timeValue = 7f;
+                }
+            }
+            
         }
     }
     void DisplayTime(float timeToDisplay)
