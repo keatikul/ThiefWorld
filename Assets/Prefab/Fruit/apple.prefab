@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23363714592162624}
   - component: {fileID: 8837579217675977787}
   - component: {fileID: 5651059991059882113}
+  - component: {fileID: 7518031977959789081}
   m_Layer: 0
   m_Name: apple
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1829371231341652}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 300, y: 300, z: 300}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,8 +97,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.014724017, y: 0.014724021, z: 0.015744774}
-  m_Center: {x: 0.0000000020954756, y: -0.0000000032596295, z: 9.486769e-20}
+  m_Size: {x: 0.026138343, y: 0.15968099, z: 0.012953125}
+  m_Center: {x: 0.00072861434, y: -0.0024486352, z: -0.0020955587}
 --- !u!54 &5651059991059882113
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -114,3 +115,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &7518031977959789081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829371231341652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
