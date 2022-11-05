@@ -7,19 +7,24 @@ using Photon.Realtime;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
+   
+
     void Start()
     {
+        
         ConnectToServer();
     }
 
     // Update is called once per frame
     void ConnectToServer()
     {
+        
         PhotonNetwork.ConnectUsingSettings();
         Debug.Log("Connecting.. to Server");
     }
     
-    public override void OnConnectedToMaster() {
+    public override void OnConnectedToMaster() 
+    {
         Debug.Log("Connected");
         base.OnConnectedToMaster();
         RoomOptions roomOptions = new RoomOptions();

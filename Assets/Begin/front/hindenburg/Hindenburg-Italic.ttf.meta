@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a94abc232c6f6cc4e9a3dc7e2ff14f6a
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Hindenburg
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5922b79f9951bdb4cbfef8c05b8907ba, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -75,6 +75,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
         scores.Add(score3);
         scores.Add(score4);
         SortingScore();
+        CheckWhowon();
     }
 
     /*private void Update()
@@ -85,7 +86,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
     public void SortingScore()
     {
         scores.Sort();
-        for (int i = 0; i < scores.Count; i++)
+        /*for (int i = 0; i < scores.Count; i++)
         {
             if (scores[0] > scores[1])
             {
@@ -145,7 +146,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
             }*/
 
             
-        }
+        //}
         CheckWhowon();
         //CheckWon();
         
@@ -167,14 +168,14 @@ public class UpdateScoreONScoreScene : MonoBehaviour
     {
         if (scores[3] == score1)
         {
-          //Debug.Log("Player 1 win");
-          //Playerwon.text = "Player 1";
-          scoreP1.text = scores[3].ToString();
-          FillName1 = true;
+            //Debug.Log("Player 1 win");
+            //Playerwon.text = "Player 1";
+            scoreP1.text = scores[3].ToString();
+            FillName1 = true;
             //Cha1.SetActive(true);
             Place.Add("Player1");
         }
-        if (scores[3] == score2)
+        else if(scores[3] == score2)
         {
           //Debug.Log("Player 2 win");
           //Playerwon.text = "Player 2";
@@ -183,7 +184,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
             //Cha2.SetActive(true);
             Place.Add("Player2");
         }
-        if (scores[3] == score3)
+        else if(scores[3] == score3)
         {
           //Debug.Log("Player 3 win");
           //Playerwon.text = "Player 3";
@@ -192,7 +193,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
             //Cha3.SetActive(true);
             Place.Add("Player3");
         }
-        if (scores[3] == score4)
+        else if(scores[3] == score4)
         {
           //Debug.Log("Player 4 win");
           //Playerwon.text = "Player 4";
@@ -214,7 +215,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
             //Cha21.SetActive(true);
             Place.Add("Player1");
         }
-        if (scores[2] == score2 && Place[0] != "Player2")
+        else if (scores[2] == score2 && Place[0] != "Player2")
         {
              //Debug.Log("Player 2 2nd");
              //Playersecound.text = "Player 2";
@@ -223,7 +224,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
             //Cha22.SetActive(true);
             Place.Add("Player2");
         }
-        if (scores[2] == score3 && Place[0] != "Player3")
+        else if (scores[2] == score3 && Place[0] != "Player3")
         {
              //Debug.Log("Player 3 2nd");
              //Playersecound.text = "Player 3";
@@ -232,7 +233,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
             //Cha23.SetActive(true);
             Place.Add("Player3");
         }
-        if (scores[2] == score4 && Place[0] != "Player4")
+        else if (scores[2] == score4 && Place[0] != "Player4")
         {
              //Playersecound.text = "Player 4";
              //Debug.Log("Player 4 2nd");
@@ -253,7 +254,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
                 //Cha31.SetActive(true);
             Place.Add("Player1");
         }
-        if (scores[1] == score2 && Place[1] != "Player2" && Place[0] != "Player2")
+        else if (scores[1] == score2 && Place[1] != "Player2" && Place[0] != "Player2")
         {
             //Debug.Log("Player 2 3rd");
             //PlayerThird.text = "Player 2";
@@ -262,7 +263,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
                 //Cha32.SetActive(true);
             Place.Add("Player2");
         }
-        if (scores[1] == score3 && Place[1] != "Player3" && Place[0] != "Player3" )
+        else if (scores[1] == score3 && Place[1] != "Player3" && Place[0] != "Player3" )
         {
             //Debug.Log("Player 3 3rd");
             //PlayerThird.text = "Player 3";
@@ -271,7 +272,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
                 //Cha33.SetActive(true);
             Place.Add("Player3");
         }
-        if (scores[1] == score4 && Place[1] != "Player4" && Place[0] != "Player4")
+        else if (scores[1] == score4 && Place[1] != "Player4" && Place[0] != "Player4")
         {
             //Debug.Log("Player 4 3rd");
             //PlayerThird.text = "Player 4";
@@ -294,7 +295,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
                 //Cha41.SetActive(true);
             Place.Add("Player1");
         }
-        if (scores[0] == score2 && Place[1] != "Player2" && Place[0] != "Player2" && Place[2] != "Player2")
+        else if (scores[0] == score2 && Place[1] != "Player2" && Place[0] != "Player2" && Place[2] != "Player2")
         {
             //Debug.Log("Player 2 4th");
             //PlayerForth.text = "Player 2";
@@ -303,7 +304,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
                 //Cha42.SetActive(true);
             Place.Add("Player2");
         }
-        if (scores[0] == score3 && Place[1] != "Player3" && Place[0] != "Player3" && Place[2] != "Player3")
+        else if (scores[0] == score3 && Place[1] != "Player3" && Place[0] != "Player3" && Place[2] != "Player3")
         {
             //Debug.Log("Player 3 4th");
             //PlayerForth.text = "Player 3";
@@ -312,7 +313,7 @@ public class UpdateScoreONScoreScene : MonoBehaviour
                 //Cha43.SetActive(true);
             Place.Add("Player3");
         }
-        if (scores[0] == score4 && Place[1] != "Player4" && Place[0] != "Player4" && Place[2] != "Player4")
+        else if (scores[0] == score4 && Place[1] != "Player4" && Place[0] != "Player4" && Place[2] != "Player4")
         {
             //Debug.Log("Player 4 4th");
             //PlayerForth.text = "Player 4";

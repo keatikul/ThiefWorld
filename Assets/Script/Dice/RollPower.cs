@@ -12,6 +12,7 @@ public class RollPower : MonoBehaviour
     bool buttonHoldDown = false;
     public float power;
     public float maxtimer = 2f;
+    
 
     public GameObject canvas;
     // Start is called before the first frame update

@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Photon.Pun;
 
-public class Gobacktomain : MonoBehaviourPunCallbacks
+
+public class Gobacktomain : MonoBehaviour
 {
     public void OnClick_Back()
     {
-        PhotonNetwork.LoadLevel(0);
-        OnLeftLobby();
+        SceneManager.LoadScene("MainMenu");
     }
 }

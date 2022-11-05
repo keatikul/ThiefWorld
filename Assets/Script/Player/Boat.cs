@@ -45,7 +45,22 @@ public class Boat : MonoBehaviour
     public bool FreezeEffect;
 
     public bool boolBotMove;
-    
+
+    public Vector3 offset;
+
+
+    public GameObject iconSiren;
+    public GameObject iconFreeze;
+    public GameObject iconProtect;
+
+
+
+    /*public GameObject iconFruit;
+    public GameObject iconPosition;
+    public Text fruittext;
+    public Text positiontext;
+    public GameObject g_icontext;*/
+
 
 
     void Start()
@@ -124,37 +139,72 @@ public class Boat : MonoBehaviour
 
     void Update()
     {
+        if (SirenEffect == true)
+        {
+            iconSiren.SetActive(true);
+        }
+        else
+        {
+            iconSiren.SetActive(false);
+        }
+        if (FreezeEffect == true)
+        {
+            iconFreeze.SetActive(true);
+        }
+        else
+        {
+            iconFreeze.SetActive(false);
+        }
+        if (ProtectEffect == true)
+        {
+            iconProtect.SetActive(true);
+        }
+        else
+        {
+            iconProtect.SetActive(false);
+        }
+        if (numberboat == 1)
+        {
+            PlayerPrefs.SetInt("PointPlayer1", Playerpoint);
+        }
+        if (numberboat == 2)
+        {
+            PlayerPrefs.SetInt("PointPlayer2", Playerpoint);
+        }
+        if (numberboat == 3)
+        {
+            PlayerPrefs.SetInt("PointPlayer3", Playerpoint);
+        }
+        if (numberboat == 4)
+        {
+            PlayerPrefs.SetInt("PointPlayer4", Playerpoint);
+        }
+
         if (isMoving == false)
         {
             steps = 0;
+            //iconFruit.SetActive(false);
+
             //ActionFruit();
         }
         //CharacterMoveWithTurn();
         if (RouteScript.instanceRoute.childNodeList[routePosition].name == "Cube100(Finish)")
         {
-            Playerpoint +=5;
+            Playerpoint +=4;
             FinishGame = true;
-            if (number == 1)
-            {
-                PlayerPrefs.SetInt("PointPlayer1", Playerpoint);
-            }
-            if (number == 2)
-            {
-                PlayerPrefs.SetInt("PointPlayer2", Playerpoint);
-            }
-            if (number == 3)
-            {
-                PlayerPrefs.SetInt("PointPlayer3", Playerpoint);
-            }
-            if (number == 4)
-            {
-                PlayerPrefs.SetInt("PointPlayer4", Playerpoint);
-            }
+            
             GotoScore();
         }
         Score.text = Playerpoint.ToString();
         Position.text = routePosition.ToString();
+
         
+        
+
+        if (RouteScript.instanceRoute.childNodeList[routePosition].name == "Cube100(Finish)")
+        {
+            //offset.x = 
+        }
     }
 
     public void CharacterMoveWithTurn()
@@ -162,21 +212,26 @@ public class Boat : MonoBehaviour
         { 
             if (Bot == true && boolBotMove == false)
             {
-                this.steps = Random.Range(1, 7);
-                TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
-                StartCoroutine(BotMove(steps));
-                if (routePosition + steps <= RouteScript.instanceRoute.childNodeList.Count)
+                if (SirenEffect == false && FreezeEffect == false)
                 {
+                    //this.steps = 20;
+                    this.steps = Random.Range(1, 7);
+                    TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
                     StartCoroutine(BotMove(steps));
-                }
-                else
-                {
-                    Debug.Log("nani");
-                }
+                    if (routePosition + steps <= RouteScript.instanceRoute.childNodeList.Count)
+                    {
+                        StartCoroutine(BotMove(steps));
+                    }
+                    else
+                    {
+                        Debug.Log("nani");
+                    }
+                } 
             }
             else
             {
                 steps = PowerUp.instancePowerUp.dicepoint;
+                
             }
             //Debug.Log("Dice Roll" + steps);
             StartCoroutine(Move(steps));
@@ -195,9 +250,9 @@ public class Boat : MonoBehaviour
 
     public void BotMove()
     {
-        if (Bot == true && boolBotMove == false)
-        {
-            this.steps = Random.Range(1, 7);
+
+        //this.steps = Random.Range(1, 7);
+            steps = FruitFree.instancefruitFree.index;
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
             StartCoroutine(BotMove(steps));
             if (routePosition + steps <= RouteScript.instanceRoute.childNodeList.Count)
@@ -208,7 +263,7 @@ public class Boat : MonoBehaviour
             {
                 Debug.Log("nani");
             }
-        }
+        
     }
 
     IEnumerator BotMove(int steps)
@@ -244,6 +299,7 @@ public class Boat : MonoBehaviour
         if (routePosition > 2)
         {
             routePosition -= 3;
+
             Vector3 nextPos = RouteScript.instanceRoute.childNodeList[routePosition].position;
             transform.LookAt(nextPos);
             StartCoroutine(Movebackward3(nextPos));
@@ -251,6 +307,7 @@ public class Boat : MonoBehaviour
         else
         {
             Playerpoint -= 2;
+            
         }
     }
 
@@ -258,6 +315,8 @@ public class Boat : MonoBehaviour
     {
         while (MovetoNextNode(nextPos)) { yield return null; }
         isMoving = false;
+       
+
     }
 
     public void MoveBack()
@@ -265,6 +324,7 @@ public class Boat : MonoBehaviour
         if (routePosition > 1)
         {
             routePosition -= 2;
+            
             Vector3 nextPos = RouteScript.instanceRoute.childNodeList[routePosition].position;
             transform.LookAt(nextPos);
             StartCoroutine(Movebackward(nextPos));
@@ -272,6 +332,7 @@ public class Boat : MonoBehaviour
         else
         {
             Playerpoint--;
+            
         }
     }
 
@@ -279,6 +340,7 @@ public class Boat : MonoBehaviour
     {
         while (MovetoNextNode(nextPos)) { yield return null; }
         isMoving = false;
+        
     }
 
     public void StopMove()
@@ -288,7 +350,6 @@ public class Boat : MonoBehaviour
 
     public void GotoScore()
     {
-
         SceneManager.LoadScene("Score");
     }
 
@@ -317,6 +378,8 @@ public class Boat : MonoBehaviour
         }
 
         isMoving = false;
+        PowerUp.instancePowerUp.Rolltext.text = "Roll";
+        TurnScriptSinglePlay.instantiateTurnsingle.buttoncanvasText.text = "Roll";
         if (steps == 0 && checkloop == false) 
         { 
             ActionFruit();
@@ -337,6 +400,7 @@ public class Boat : MonoBehaviour
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
             //Debug.Log("working");
             Playerpoint++;
+            
             TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
         }
         if (FruitName1 == "apple(Clone)")
@@ -351,8 +415,9 @@ public class Boat : MonoBehaviour
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
             canvasProtect.SetActive(true);
             Playerpoint++;
-            //ProtectEffect = true;
             
+            ProtectEffect = true;
+
         }
         if (FruitName1 == "watermelon(Clone)")
         {
@@ -360,6 +425,7 @@ public class Boat : MonoBehaviour
             canvasFall.SetActive(true);
             Playerpoint++;
             
+
         }
         if (FruitName1 == "peach(Clone)")
         {
@@ -367,6 +433,7 @@ public class Boat : MonoBehaviour
             canvasStole.SetActive(true);
             Playerpoint++;
             
+
         }
         if (FruitName1 == "pear(Clone)")
         {
@@ -374,29 +441,47 @@ public class Boat : MonoBehaviour
             canvasStolen.SetActive(true);
             Playerpoint++;
             
+
         }
         if (FruitName1 == "avocado(Clone)")
         {
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
             canvasSiren.SetActive(true);
             Playerpoint++;
-            SirenEffect = true;
-            
+           
+            if (ProtectEffect == false)
+            {
+                SirenEffect = true;
+            }
+            else
+            {
+                SirenEffect = false;
+            }
+
+
         }
         if (FruitName1 == "lemon(Clone)")
         {
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
             canvasFreeze.SetActive(true);
             Playerpoint++;
-            FreezeEffect = true;
-            
+           
+            if (ProtectEffect == false)
+            {
+                FreezeEffect = true;
+            }
+            else
+            {
+                FreezeEffect = false;
+            }
+
         }
         if (FruitName1 == "strawberry(Clone)")
         {
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
             canvasFree.SetActive(true);
             Playerpoint++;
-           
+            
         }
         if (FruitName1 == "banana(Clone)")
         {
@@ -411,6 +496,7 @@ public class Boat : MonoBehaviour
             canvasTime.SetActive(true);
             Playerpoint++;
             
+
         }
 
     }

@@ -52,6 +52,7 @@ public class FruitStolen : MonoBehaviour
                     if (boats[i].number == 1)
                     {
                         TurnScriptSinglePlay.instantiateTurnsingle.Players[i].Playerpoint += 4;
+                        
                     }   
                 }
                 if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true)
@@ -59,6 +60,7 @@ public class FruitStolen : MonoBehaviour
                     if (boats[i].number == 2)
                     {
                         TurnScriptSinglePlay.instantiateTurnsingle.Players[i].Playerpoint += 4;
+                        
                     }
                 }
                 if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true)
@@ -66,6 +68,7 @@ public class FruitStolen : MonoBehaviour
                     if (boats[i].number == 3)
                     {
                         TurnScriptSinglePlay.instantiateTurnsingle.Players[i].Playerpoint += 4;
+                        
                     }
                 }
                 if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true)
@@ -73,9 +76,13 @@ public class FruitStolen : MonoBehaviour
                     if (boats[i].number == 4)
                     {
                         TurnScriptSinglePlay.instantiateTurnsingle.Players[i].Playerpoint += 4;
+                        
                     }
                 }
                 boats[i].Playerpoint -= 1;
+                /*boats[i].iconFruit.SetActive(true);
+                boats[i].g_icontext.SetActive(true);
+                boats[i].icontext.text = "-1";*/
             }
         }
 

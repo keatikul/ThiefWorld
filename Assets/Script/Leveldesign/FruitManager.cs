@@ -44,6 +44,12 @@ public class FruitManager : MonoBehaviour
 
     public static FruitManager instanceFruitmanager;
 
+    public GameObject OkButtonSiren;
+    public GameObject OkButtonFreeze;
+    public GameObject OkButtonFree;
+    public GameObject OkButtonTime;
+    public GameObject OkButtonProtect;
+    public GameObject OkButtonStolen;
 
 
     //นับเทิน เพื่อให้ Action ที่หยุดเคลื่อนไหวทราบ (อาจจะใช้วิธีการลบเมื่อผ่านเทินตัวเองไป)
@@ -70,6 +76,12 @@ public class FruitManager : MonoBehaviour
         ActionFruitFall();
         ActionFruitStole();
         ActionFruitReverse();
+        ActionSiren();
+        ActionFreeze();
+        ActionFree();
+        ActionTime();
+        ActionProtect();
+        ActionStolen();
     }
     public void Checkfruit()
     {
@@ -87,443 +99,1147 @@ public class FruitManager : MonoBehaviour
         //save data fruit to route
         //check from route who have what?
         //collider use 1 of this Box or Mesh
-
-
-
-
-
-        /*if (Boat.instanceBoatt.number == 1 && Boat.instanceBoatt != null)
-        {
-            
-            //FruitSteal    
-            if (Boat.instanceBoatt.FruitName1 == "apple(Clone)" && Boat.instanceBoatt.PlayerStay == true && Boat.instanceBoatt.isMoving == false)
-            {
-                canvasSteal.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-                canvasSteal.SetActive(false);
-                
-        }
-
-        //Protect
-            if (Boat.instanceBoatt.FruitName1 == "peanut(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasProtect.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasProtect.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-
-        //Fall
-
-            if (Boat.instanceBoatt.FruitName1 == "watermelon(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasFall.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasFall.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-
-        //Stole
-
-            if (Boat.instanceBoatt.FruitName1 == "peach(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasStole.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasStole.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-            }
-
-
-        //Stolen
-
-            if (Boat.instanceBoatt.FruitName1 == "pear(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasStolen.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasStolen.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-        }
-
-        if (Boat.instanceBoatt.number == 2 && Boat.instanceBoatt != null)
-        {
-            //FruitSteal    
-            if (Boat.instanceBoatt.FruitName2 == "apple(Clone)" && Boat.instanceBoatt.PlayerStay == true && Boat.instanceBoatt.isMoving == false)
-            {
-                canvasSteal.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-                canvasSteal.SetActive(false);
-
-            }
-
-            //Protect
-            if (Boat.instanceBoatt.FruitName2 == "peanut(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasProtect.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasProtect.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-
-            //Fall
-
-            if (Boat.instanceBoatt.FruitName2 == "watermelon(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasFall.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasFall.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-
-            //Stole
-
-            if (Boat.instanceBoatt.FruitName2 == "peach(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasStole.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasStole.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-            }
-
-
-            //Stolen
-
-            if (Boat.instanceBoatt.FruitName2 == "pear(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasStolen.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasStolen.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-        }
-
-        if (Boat.instanceBoatt.number == 3 && Boat.instanceBoatt != null)
-        {
-            //FruitSteal    
-            if (Boat.instanceBoatt.FruitName3 == "apple(Clone)" && Boat.instanceBoatt.PlayerStay == true && Boat.instanceBoatt.isMoving == false)
-            {
-                canvasSteal.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-                canvasSteal.SetActive(false);
-
-            }
-
-            //Protect
-            if (Boat.instanceBoatt.FruitName3 == "peanut(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasProtect.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasProtect.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-
-            //Fall
-
-            if (Boat.instanceBoatt.FruitName3 == "watermelon(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasFall.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasFall.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-
-            //Stole
-
-            if (Boat.instanceBoatt.FruitName3 == "peach(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasStole.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasStole.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-            }
-
-
-            //Stolen
-
-            if (Boat.instanceBoatt.FruitName3 == "pear(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasStolen.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasStolen.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-        }
-
-        if (Boat.instanceBoatt.number == 4 && Boat.instanceBoatt != null)
-        {
-            //FruitSteal    
-            if (Boat.instanceBoatt.FruitName4 == "apple(Clone)" && Boat.instanceBoatt.PlayerStay == true && Boat.instanceBoatt.isMoving == false)
-            {
-                canvasSteal.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-                canvasSteal.SetActive(false);
-
-            }
-
-            //Protect
-            if (Boat.instanceBoatt.FruitName4 == "peanut(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasProtect.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasProtect.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-
-            //Fall
-
-            if (Boat.instanceBoatt.FruitName4 == "watermelon(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasFall.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasFall.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-
-            //Stole
-
-            if (Boat.instanceBoatt.FruitName4 == "peach(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasStole.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasStole.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-            }
-
-
-            //Stolen
-
-            if (Boat.instanceBoatt.FruitName4 == "pear(Clone)" && Boat.instanceBoatt.PlayerStay == true)
-            {
-                //Debug.Log("Working");
-                canvasStolen.SetActive(true);
-                //Debug.Log("Working");
-            }
-            if (Boat.instanceBoatt.PlayerStay == false)
-            {
-                canvasStolen.SetActive(false);
-                if (Timer.instantiateTimer != null)
-                {
-                    Timer.instantiateTimer.timeValue = 7;
-                }
-
-            }
-        }
-
-        {
-            /*if(FruitSteal.instantiateFruitSteal.PlayerStay == false)
-                    {
-                        canvasSteal.SetActive(false);
-                    }
-                    //FruitProtect
-                    if (FruitProtect.instantiateFruitProtect.PlayerStay == true && BoatScript.instanceBoat.isMoving == false)
-                    {
-                        canvasProtect.SetActive(true);
-                        //Debug.Log("Working");
-                    }
-                    else
-                    {
-                        //Debug.Log("Protect Not Working");
-                    }
-                    if (FruitProtect.instantiateFruitProtect.PlayerStay == false)
-                    {
-                        canvasProtect.SetActive(false);
-                    }
-                    //FruitFall
-                    if (FruitFall.instantiateFruitFall.PlayerStay == true && BoatScript.instanceBoat.isMoving == false)
-                    {
-                        canvasFall.SetActive(true);
-                        //Debug.Log("Working");
-                    }
-                    else
-                    {
-                        //Debug.Log("Fall Not Working");
-                    }
-                    if (FruitFall.instantiateFruitFall.PlayerStay == false)
-                    {
-                        canvasFall.SetActive(false);
-                    }
-                    //FruitStole
-                    if (FruitStole.instantiateFruitStole.PlayerStay == true && BoatScript.instanceBoat.isMoving == false)
-                    {
-                        canvasStole.SetActive(true);
-                        //Debug.Log("Working");
-                    }
-                    else
-                    {
-                        //Debug.Log("Stole Not Working");
-                    }
-                    if (FruitStole.instantiateFruitStole.PlayerStay == false)
-                    {
-                        canvasStole.SetActive(false);
-                    }
-                    //FruitStolen
-                    if (FruitStolen.instantiateFruitStolen.PlayerStay == true && BoatScript.instanceBoat.isMoving == false)
-                    {
-                        canvasStolen.SetActive(true);
-                        //Debug.Log("Working");
-                    }
-                    else
-                    {
-                        //Debug.Log("Stolen Not Working");
-                    }
-                    if (FruitStolen.instantiateFruitStolen.PlayerStay == false)
-                    {
-                        canvasStolen.SetActive(false);
-                    }
-        }*/
-
     }
 
     public void OnclickActionSteal()
     {
-        
         canvasSteal.SetActive(false);
         Timer.instantiateTimer.timeValue = 7;
         Debug.Log("Close canvas click");
+    }
+
+    public void ActionStolen()
+    {
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "pear(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonStolen.SetActive(true);
+            }
+            else
+            {
+                OkButtonStolen.SetActive(false);
+            }
+        }
+    }
+
+    public void ActionProtect()
+    {
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "peanut(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonProtect.SetActive(true);
+            }
+            else
+            {
+                OkButtonProtect.SetActive(false);
+            }
+        }
+    }
+
+    public void ActionTime()
+    {
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "cherries(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonTime.SetActive(true);
+            }
+            else
+            {
+                OkButtonTime.SetActive(false);
+            }
+        }
+    }
+
+    public void ActionFree()
+    {
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "strawberry(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonFree.SetActive(true);
+            }
+            else
+            {
+                OkButtonFree.SetActive(false);
+            }
+        }
+    }
+
+    public void ActionFreeze()
+    {
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "lemon(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonFreeze.SetActive(true);
+            }
+            else
+            {
+                OkButtonFreeze.SetActive(false);
+            }
+        }
+    }
+
+    public void ActionSiren()
+    {
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+
+        //----------------------------------------------------------------------
+
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "avocado(Clone)")
+        {
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                OkButtonSiren.SetActive(true);
+            }
+            else
+            {
+                OkButtonSiren.SetActive(false);
+            }
+        }
     }
 
     public void ActionFruitSteal()
@@ -536,31 +1252,71 @@ public class FruitManager : MonoBehaviour
         //{
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(false);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(false);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btsteal2.SetActive(false);
+                btsteal1.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(false);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btsteal3.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal1.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btsteal4.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal1.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         //}
 
@@ -568,31 +1324,71 @@ public class FruitManager : MonoBehaviour
         //{ 
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(false);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(false);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btsteal2.SetActive(false);
+                btsteal1.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(false);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btsteal3.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal1.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btsteal4.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal1.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         //}
 
@@ -600,31 +1396,71 @@ public class FruitManager : MonoBehaviour
         //{        
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(false);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(false);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btsteal2.SetActive(false);
+                btsteal1.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(false);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btsteal3.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal1.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btsteal4.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal1.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         //}
 
@@ -632,31 +1468,71 @@ public class FruitManager : MonoBehaviour
         //{
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(false);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(false);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btsteal2.SetActive(false);
+                btsteal1.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(false);
-            btsteal4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btsteal3.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal1.SetActive(true);
+                btsteal4.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "apple(Clone)")
         {
-            btsteal1.SetActive(true);
-            btsteal2.SetActive(true);
-            btsteal3.SetActive(true);
-            btsteal4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btsteal4.SetActive(false);
+                btsteal2.SetActive(true);
+                btsteal3.SetActive(true);
+                btsteal1.SetActive(true);
+            }
+            else
+            {
+                btsteal1.SetActive(false);
+                btsteal2.SetActive(false);
+                btsteal3.SetActive(false);
+                btsteal4.SetActive(false);
+            }
         }
         //}
 
@@ -666,31 +1542,71 @@ public class FruitManager : MonoBehaviour
     {
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(false);
-            btfall2.SetActive(true);
-            btfall3.SetActive(true);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(true);
+                btfall3.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(false);
-            btfall3.SetActive(true);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btfall2.SetActive(false);
+                btfall1.SetActive(true);
+                btfall3.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(true);
-            btfall3.SetActive(false);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btfall3.SetActive(false);
+                btfall2.SetActive(true);
+                btfall1.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(true);
-            btfall3.SetActive(true);
-            btfall4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btfall4.SetActive(false);
+                btfall2.SetActive(true);
+                btfall3.SetActive(true);
+                btfall1.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         //}
 
@@ -698,31 +1614,71 @@ public class FruitManager : MonoBehaviour
         //{ 
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(false);
-            btfall2.SetActive(true);
-            btfall3.SetActive(true);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(true);
+                btfall3.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(false);
-            btfall3.SetActive(true);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btfall2.SetActive(false);
+                btfall1.SetActive(true);
+                btfall3.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(true);
-            btfall3.SetActive(false);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btfall3.SetActive(false);
+                btfall2.SetActive(true);
+                btfall1.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(true);
-            btfall3.SetActive(true);
-            btfall4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btfall4.SetActive(false);
+                btfall2.SetActive(true);
+                btfall3.SetActive(true);
+                btfall1.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         //}
 
@@ -730,31 +1686,71 @@ public class FruitManager : MonoBehaviour
         //{        
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(false);
-            btfall2.SetActive(true);
-            btfall3.SetActive(true);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(true);
+                btfall3.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(false);
-            btfall3.SetActive(true);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btfall2.SetActive(false);
+                btfall1.SetActive(true);
+                btfall3.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(true);
-            btfall3.SetActive(false);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btfall3.SetActive(false);
+                btfall2.SetActive(true);
+                btfall1.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(true);
-            btfall3.SetActive(true);
-            btfall4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btfall4.SetActive(false);
+                btfall2.SetActive(true);
+                btfall3.SetActive(true);
+                btfall1.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         //}
 
@@ -762,31 +1758,71 @@ public class FruitManager : MonoBehaviour
         //{
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(false);
-            btfall2.SetActive(true);
-            btfall3.SetActive(true);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(true);
+                btfall3.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(false);
-            btfall3.SetActive(true);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btfall2.SetActive(false);
+                btfall1.SetActive(true);
+                btfall3.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(true);
-            btfall3.SetActive(false);
-            btfall4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btfall3.SetActive(false);
+                btfall2.SetActive(true);
+                btfall1.SetActive(true);
+                btfall4.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "watermelon(Clone)")
         {
-            btfall1.SetActive(true);
-            btfall2.SetActive(true);
-            btfall3.SetActive(true);
-            btfall4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btfall4.SetActive(false);
+                btfall2.SetActive(true);
+                btfall3.SetActive(true);
+                btfall1.SetActive(true);
+            }
+            else
+            {
+                btfall1.SetActive(false);
+                btfall2.SetActive(false);
+                btfall3.SetActive(false);
+                btfall4.SetActive(false);
+            }
         }
     }
 
@@ -794,31 +1830,71 @@ public class FruitManager : MonoBehaviour
     {
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(false);
-            btstole2.SetActive(true);
-            btstole3.SetActive(true);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(true);
+                btstole3.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(false);
-            btstole3.SetActive(true);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btstole2.SetActive(false);
+                btstole1.SetActive(true);
+                btstole3.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(true);
-            btstole3.SetActive(false);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btstole3.SetActive(false);
+                btstole2.SetActive(true);
+                btstole1.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(true);
-            btstole3.SetActive(true);
-            btstole4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btstole4.SetActive(false);
+                btstole2.SetActive(true);
+                btstole3.SetActive(true);
+                btstole1.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         //}
 
@@ -826,31 +1902,71 @@ public class FruitManager : MonoBehaviour
         //{ 
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(false);
-            btstole2.SetActive(true);
-            btstole3.SetActive(true);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(true);
+                btstole3.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(false);
-            btstole3.SetActive(true);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btstole2.SetActive(false);
+                btstole1.SetActive(true);
+                btstole3.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(true);
-            btstole3.SetActive(false);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btstole3.SetActive(false);
+                btstole2.SetActive(true);
+                btstole1.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(true);
-            btstole3.SetActive(true);
-            btstole4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btstole4.SetActive(false);
+                btstole2.SetActive(true);
+                btstole3.SetActive(true);
+                btstole1.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         //}
 
@@ -858,31 +1974,71 @@ public class FruitManager : MonoBehaviour
         //{        
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(false);
-            btstole2.SetActive(true);
-            btstole3.SetActive(true);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(true);
+                btstole3.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(false);
-            btstole3.SetActive(true);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btstole2.SetActive(false);
+                btstole1.SetActive(true);
+                btstole3.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(true);
-            btstole3.SetActive(false);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btstole3.SetActive(false);
+                btstole2.SetActive(true);
+                btstole1.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(true);
-            btstole3.SetActive(true);
-            btstole4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btstole4.SetActive(false);
+                btstole2.SetActive(true);
+                btstole3.SetActive(true);
+                btstole1.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         //}
 
@@ -890,31 +2046,71 @@ public class FruitManager : MonoBehaviour
         //{
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(false);
-            btstole2.SetActive(true);
-            btstole3.SetActive(true);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(true);
+                btstole3.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(false);
-            btstole3.SetActive(true);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btstole2.SetActive(false);
+                btstole1.SetActive(true);
+                btstole3.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(true);
-            btstole3.SetActive(false);
-            btstole4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btstole3.SetActive(false);
+                btstole2.SetActive(true);
+                btstole1.SetActive(true);
+                btstole4.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "peach(Clone)")
         {
-            btstole1.SetActive(true);
-            btstole2.SetActive(true);
-            btstole3.SetActive(true);
-            btstole4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btstole4.SetActive(false);
+                btstole2.SetActive(true);
+                btstole3.SetActive(true);
+                btstole1.SetActive(true);
+            }
+            else
+            {
+                btstole1.SetActive(false);
+                btstole2.SetActive(false);
+                btstole3.SetActive(false);
+                btstole4.SetActive(false);
+            }
         }
     }
 
@@ -922,31 +2118,71 @@ public class FruitManager : MonoBehaviour
     {
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(false);
-            btreverse2.SetActive(true);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse2.SetActive(false);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btreverse2.SetActive(false);
+                btreverse1.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse2.SetActive(true);
-            btreverse3.SetActive(false);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btreverse3.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse1.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse2.SetActive(true);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btreverse4.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse1.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         //}
 
@@ -954,30 +2190,71 @@ public class FruitManager : MonoBehaviour
         //{ 
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(false);
-            btreverse2.SetActive(true);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse2.SetActive(false);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btreverse2.SetActive(false);
+                btreverse1.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse3.SetActive(false);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btreverse3.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse1.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse2.SetActive(true);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btreverse4.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse1.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         //}
 
@@ -985,31 +2262,71 @@ public class FruitManager : MonoBehaviour
         //{        
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(false);
-            btreverse2.SetActive(true);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse2.SetActive(false);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btreverse2.SetActive(false);
+                btreverse1.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse2.SetActive(true);
-            btreverse3.SetActive(false);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btreverse3.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse1.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse2.SetActive(true);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btreverse4.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse1.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         //}
 
@@ -1017,31 +2334,71 @@ public class FruitManager : MonoBehaviour
         //{
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[0].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(false);
-            btreverse2.SetActive(true);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[0].Bot == false)
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[1].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse2.SetActive(false);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Bot == false)
+            {
+                btreverse2.SetActive(false);
+                btreverse1.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[2].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse2.SetActive(true);
-            btreverse3.SetActive(false);
-            btreverse4.SetActive(true);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Bot == false)
+            {
+                btreverse3.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse1.SetActive(true);
+                btreverse4.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
         if (TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.Players[3].FruitName1 == "banana(Clone)")
         {
-            btreverse1.SetActive(true);
-            btreverse2.SetActive(true);
-            btreverse3.SetActive(true);
-            btreverse4.SetActive(false);
+            if (TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Bot == false)
+            {
+                btreverse4.SetActive(false);
+                btreverse2.SetActive(true);
+                btreverse3.SetActive(true);
+                btreverse1.SetActive(true);
+            }
+            else
+            {
+                btreverse1.SetActive(false);
+                btreverse2.SetActive(false);
+                btreverse3.SetActive(false);
+                btreverse4.SetActive(false);
+            }
         }
     }
 }

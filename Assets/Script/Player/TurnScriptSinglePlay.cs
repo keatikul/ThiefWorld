@@ -119,6 +119,7 @@ public class TurnScriptSinglePlay : MonoBehaviour
         //CheckPlayerNum();
         //ActionFruitSteal();
         ChangeTextTurn();
+        //EndEvent();
     }
 
     public void ChangeTextTurn()
@@ -495,34 +496,8 @@ public class TurnScriptSinglePlay : MonoBehaviour
             }*/
         }
         PlayerClick = true;
-        
-        for (int i = 0; i < Players.Length; i++)
-        {
-            if (Players[i].number == 1 && checkTurn1 == false)
-            {
-                Players[i].boolBotMove = false;
-                buttoncanvasText.text = "Roll";
-                Players[i].isMoving = false;
-            }
-            if (Players[i].number == 2 && checkTurn2 == false)
-            {
-                Players[i].boolBotMove = false;
-                buttoncanvasText.text = "Roll";
-                Players[i].isMoving = false;
-            }
-            if (Players[i].number == 3 && checkTurn3 == false)
-            {
-                Players[i].boolBotMove = false;
-                buttoncanvasText.text = "Roll";
-                Players[i].isMoving = false;
-            }
-            if (Players[i].number == 4 && checkTurn4 == false)
-            {
-                Players[i].boolBotMove = false;
-                buttoncanvasText.text = "Roll";
-                Players[i].isMoving = false;
-            }
-        }
+
+        EndEvent();
 
         /*numP2++;
         Debug.Log("Click: "+numP2);*/
@@ -553,7 +528,41 @@ public class TurnScriptSinglePlay : MonoBehaviour
         }*/
 
     }
-
+    
+    public void EndEvent()
+    {
+        for (int i = 0; i < Players.Length; i++)
+        {
+            if (Players[i].number == 1 && checkTurn1 == false)
+            {
+                Players[i].boolBotMove = false;
+                buttoncanvasText.text = "Roll";
+                Players[i].isMoving = false;
+                
+            }
+            if (Players[i].number == 2 && checkTurn2 == false)
+            {
+                Players[i].boolBotMove = false;
+                buttoncanvasText.text = "Roll";
+                Players[i].isMoving = false;
+                
+            }
+            if (Players[i].number == 3 && checkTurn3 == false)
+            {
+                Players[i].boolBotMove = false;
+                buttoncanvasText.text = "Roll";
+                Players[i].isMoving = false;
+               
+            }
+            if (Players[i].number == 4 && checkTurn4 == false)
+            {
+                Players[i].boolBotMove = false;
+                buttoncanvasText.text = "Roll";
+                Players[i].isMoving = false;
+                
+            }
+        }
+    }
 
     public void BotRoll()
     {
@@ -771,6 +780,16 @@ public class TurnScriptSinglePlay : MonoBehaviour
                     TimeEnd();
                     if (timeEnd == 0)
                     {
+                        Boat.instanceBoatt.canvasFall.SetActive(false);
+                        Boat.instanceBoatt.canvasFree.SetActive(false);
+                        Boat.instanceBoatt.canvasFreeze.SetActive(false);
+                        Boat.instanceBoatt.canvasProtect.SetActive(false);
+                        Boat.instanceBoatt.canvasReverse.SetActive(false);
+                        Boat.instanceBoatt.canvasSiren.SetActive(false);
+                        Boat.instanceBoatt.canvasSteal.SetActive(false);
+                        Boat.instanceBoatt.canvasStole.SetActive(false);
+                        Boat.instanceBoatt.canvasStolen.SetActive(false);
+                        Boat.instanceBoatt.canvasTime.SetActive(false);
                         timeValue = 0;
                         checkTurn1 = false;
                         Debug.Log("EndTurn1");
@@ -824,6 +843,16 @@ public class TurnScriptSinglePlay : MonoBehaviour
                         TimeEnd();
                         if (timeEnd == 0)
                         {
+                            Boat.instanceBoatt.canvasFall.SetActive(false);
+                            Boat.instanceBoatt.canvasFree.SetActive(false);
+                            Boat.instanceBoatt.canvasFreeze.SetActive(false);
+                            Boat.instanceBoatt.canvasProtect.SetActive(false);
+                            Boat.instanceBoatt.canvasReverse.SetActive(false);
+                            Boat.instanceBoatt.canvasSiren.SetActive(false);
+                            Boat.instanceBoatt.canvasSteal.SetActive(false);
+                            Boat.instanceBoatt.canvasStole.SetActive(false);
+                            Boat.instanceBoatt.canvasStolen.SetActive(false);
+                            Boat.instanceBoatt.canvasTime.SetActive(false);
                             timeValue = 0;
                             checkTurn2 = false;
                             Debug.Log("EndTurn2");
@@ -865,6 +894,16 @@ public class TurnScriptSinglePlay : MonoBehaviour
                     TimeEnd();
                     if (timeEnd == 0)
                     {
+                        Boat.instanceBoatt.canvasFall.SetActive(false);
+                        Boat.instanceBoatt.canvasFree.SetActive(false);
+                        Boat.instanceBoatt.canvasFreeze.SetActive(false);
+                        Boat.instanceBoatt.canvasProtect.SetActive(false);
+                        Boat.instanceBoatt.canvasReverse.SetActive(false);
+                        Boat.instanceBoatt.canvasSiren.SetActive(false);
+                        Boat.instanceBoatt.canvasSteal.SetActive(false);
+                        Boat.instanceBoatt.canvasStole.SetActive(false);
+                        Boat.instanceBoatt.canvasStolen.SetActive(false);
+                        Boat.instanceBoatt.canvasTime.SetActive(false);
                         timeValue = 0;
                         checkTurn3 = false;
                         Debug.Log("EndTurn3");
@@ -907,6 +946,16 @@ public class TurnScriptSinglePlay : MonoBehaviour
                     TimeEnd();
                     if (timeEnd == 0)
                     {
+                        Boat.instanceBoatt.canvasFall.SetActive(false);
+                        Boat.instanceBoatt.canvasFree.SetActive(false);
+                        Boat.instanceBoatt.canvasFreeze.SetActive(false);
+                        Boat.instanceBoatt.canvasProtect.SetActive(false);
+                        Boat.instanceBoatt.canvasReverse.SetActive(false);
+                        Boat.instanceBoatt.canvasSiren.SetActive(false);
+                        Boat.instanceBoatt.canvasSteal.SetActive(false);
+                        Boat.instanceBoatt.canvasStole.SetActive(false);
+                        Boat.instanceBoatt.canvasStolen.SetActive(false);
+                        Boat.instanceBoatt.canvasTime.SetActive(false);
                         timeValue = 0;
                         checkTurn4 = false;
                         Debug.Log("EndTurn4");

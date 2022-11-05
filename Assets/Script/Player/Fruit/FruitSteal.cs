@@ -155,23 +155,28 @@ public class FruitSteal : MonoBehaviour
         }else
         {   
             boats[0].Playerpoint -= 1;
+           
             for (i = 0; i < 4; i++)
             {
                 if (boats[i].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
             }
                 
@@ -193,23 +198,28 @@ public class FruitSteal : MonoBehaviour
         {
             //TurnScriptSinglePlay.instantiateTurnsingle.Players[1].Playerpoint++;
             boats[1].Playerpoint -= 1;
+            
             for (i = 0; i < 4; i++)
             {
                 if (boats[i].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
             }
         }
@@ -229,23 +239,28 @@ public class FruitSteal : MonoBehaviour
         {
             //TurnScriptSinglePlay.instantiateTurnsingle.Players[2].Playerpoint++;
             boats[2].Playerpoint -= 1;
+            
             for (i = 0; i < 4; i++)
             {
                 if (boats[i].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
             }
         }
@@ -265,23 +280,28 @@ public class FruitSteal : MonoBehaviour
         {
             //TurnScriptSinglePlay.instantiateTurnsingle.Players[3].Playerpoint++;
             boats[3].Playerpoint -= 1;
+            
             for (i = 0; i < 4; i++)
             {
                 if (boats[i].number == 1 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 2 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 3 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
                 if (boats[i].number == 4 && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true)
                 {
                     boats[i].Playerpoint++;
+                    
                 }
             }
         }

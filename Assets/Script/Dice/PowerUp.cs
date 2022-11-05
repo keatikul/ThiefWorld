@@ -15,17 +15,30 @@ public class PowerUp : MonoBehaviour
     public bool isRoll = false;
     //public bool moveBoat = false;
     public GameObject dice;
+    public Vector3 rotation;
+    public Material[] materials;
+    Renderer rend;
+    public int Matt;
+    public Text Rolltext;
 
+   
     void Awake()
     {
+        Matt = 0;
+        rend = GetComponent<Renderer>();
+        rend.enabled = true;
+        rend.sharedMaterial = materials[Matt];
         MakeSingleton();
+        //dice.SetActive(false);
     }
     void Update()
     {
+        rend.sharedMaterial = materials[Matt];
         if (isPowerUp)
         {
             PowerActive();
             dicepoint = 0;
+            
         }
         if (dicepoint <= 0 && amtPower == 0.0f && isPowerUp == false)
         {
@@ -57,8 +70,9 @@ public class PowerUp : MonoBehaviour
     {
         if (amtPower >= 50f)
         {
-            //dicepoint = Random.Range(3, 7);
-            dicepoint = 39;
+            dicepoint = Random.Range(4, 7);
+            Rolltext.text = dicepoint.ToString();
+            //dicepoint = 100;
             //isRoll = true;
             Debug.Log("Dice" + dicepoint);
             ClearValue();
@@ -66,15 +80,50 @@ public class PowerUp : MonoBehaviour
         else
         {
             dicepoint = Random.Range(1, 4);
+            Rolltext.text = dicepoint.ToString();
+            //dicepoint = 1;
+            NextMatterial();
             //isRoll = true;
             Debug.Log("Dice" + dicepoint);
             ClearValue();
         }
+        
+
+    }
+
+    void NextMatterial()
+    {
+        if (dicepoint == 1)
+        {
+            Matt = 0;
+        }
+        if (dicepoint == 2)
+        {
+            Matt = 1;
+        }
+        if (dicepoint == 3)
+        {
+            Matt = 2;
+        }
+        if (dicepoint == 4)
+        {
+            Matt = 3;
+        }
+        if (dicepoint == 5)
+        {
+            Matt = 4;
+        }
+        if (dicepoint == 6)
+        {
+            Matt = 5;
+        }
     }
     void ClearValue()
     {
+        dice.SetActive(false);
         amtPower = 0.0f;
         imagePowerUp.fillAmount = 0;
+        
     }
 
     void PowerActive()
@@ -104,11 +153,19 @@ public class PowerUp : MonoBehaviour
         isPowerUp = true;
         amtPower = 0.0f;
         isDirectionUp = true;
+        if (isRoll == false)
+        {
+            Rolltext.text = "Roll";
+        }
     }
     public void EndPowerUp()
     {   
         DiceRoll();
         isPowerUp = false;
         isRoll = true;
+        dice.SetActive(true);
+        dice.transform.position = new Vector3(-0.04694976f, 292f, -3.222631f);
+        dice.transform.rotation = Quaternion.Euler(65f,3f,1.8f);
+
     }
 }

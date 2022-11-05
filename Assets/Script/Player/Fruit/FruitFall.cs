@@ -124,6 +124,7 @@ public class FruitFall : MonoBehaviour
         else
         {
             boats[0].Playerpoint -= 2;
+            
         }
 
     }
@@ -138,6 +139,7 @@ public class FruitFall : MonoBehaviour
         else
         {
             boats[1].Playerpoint -= 2;
+            
         }
     }
     public void OnSelectButton3()
@@ -152,6 +154,7 @@ public class FruitFall : MonoBehaviour
         else
         {
             boats[2].Playerpoint -= 2;
+            
         }
     }
     public void OnSelectButton4()
@@ -166,6 +169,7 @@ public class FruitFall : MonoBehaviour
         else
         {
             boats[3].Playerpoint -= 2;
+            
         }
     }
 }

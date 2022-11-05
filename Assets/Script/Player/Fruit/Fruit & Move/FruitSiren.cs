@@ -7,6 +7,12 @@ public class FruitSiren : MonoBehaviour
 {
     public int currentTurnUsed;
     public int fininshTurn;
+    public int currentTurnUsed2;
+    public int fininshTurn2;
+    public int currentTurnUsed3;
+    public int fininshTurn3;
+    public int currentTurnUsed4;
+    public int fininshTurn4;
     public List<Boat> boats = new List<Boat>();
     public bool stillEffect;
     public bool stillEffect2;
@@ -47,70 +53,128 @@ public class FruitSiren : MonoBehaviour
 
     public void Update()
     {
-        /*if (timeValue > 0)
-        {
-            timeValue -= Time.deltaTime;
-        }
-        else
-        {
-            timeValue = 0;
-        }
-        DisplayTime(timeValue);
-        if (timeValue == 0)
-        {
-            Debug.Log("Time up");
-        }*/
+       
         if (time.timeValue == 0)
         {
             SirenEffect();
             time.timeValue = 7f;
             TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
         }
+        
 
-
+        //SirenEffect();
         if (stillEffect == true && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn1 == true)
         {
+            CheckfinishTurn();
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
-            TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
-            if (TurnScriptSinglePlay.instantiateTurnsingle.TurnCount >= fininshTurn)
+            /*if (stillEffect == true)
             {
-                stillEffect = false;
-                
-            }
+                //TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
+            }*/
+            TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
+            
         }
         if (stillEffect2 == true && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn2 == true)
         {
+            CheckfinishTurn();
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
-            TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
-            if (TurnScriptSinglePlay.instantiateTurnsingle.TurnCount >= fininshTurn)
+            /*if (stillEffect2 == true)
             {
-                stillEffect2 = false;
-               
-            }
+                //TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
+            }*/
+            TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
+            
         }
         if (stillEffect3 == true && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn3 == true)
         {
+            CheckfinishTurn();
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
-            TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
-            if (TurnScriptSinglePlay.instantiateTurnsingle.TurnCount >= fininshTurn)
+            /*if (stillEffect3 == true)
             {
-                stillEffect3 = false;
-                
-            }
+                //TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
+            }*/
+            TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
+            
         }
         if (stillEffect4 == true && TurnScriptSinglePlay.instantiateTurnsingle.checkTurn4 == true)
         {
+            CheckfinishTurn();
             TurnScriptSinglePlay.instantiateTurnsingle.buttonCanvas.SetActive(false);
-            TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
-            if (TurnScriptSinglePlay.instantiateTurnsingle.TurnCount >= fininshTurn)
+            /*if (stillEffect4 == true)
             {
-                stillEffect4 = false;
-                
+                //TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
+            }*/
+            TurnScriptSinglePlay.instantiateTurnsingle.CheckPlayerNum();
+            
+        }
+    }
+
+
+    public void CheckfinishTurn()
+    {
+        if (TurnScriptSinglePlay.instantiateTurnsingle.TurnCount > fininshTurn)
+        {
+            stillEffect = false;
+            for (i = 0; i < boats.Count; i++)
+            {
+                if (stillEffect == false && boats[i].number == 1)
+                {
+                    if (boats[i].SirenEffect == true)
+                    {
+                        boats[i].SirenEffect = false;
+                    }
+                }
             }
         }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.TurnCount > fininshTurn2)
+        {
+            stillEffect2 = false;
+            for (i = 0; i < boats.Count; i++)
+            {
+                if (stillEffect2 == false && boats[i].number == 2)
+                {
+                    if (boats[i].SirenEffect == true)
+                    {
+                        boats[i].SirenEffect = false;
+                    }
+                }
+            }
 
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.TurnCount > fininshTurn3)
+        {
+            stillEffect3 = false;
+            for (i = 0; i < boats.Count; i++)
+            {
+                if (stillEffect3 == false && boats[i].number == 3)
+                {
+                    if (boats[i].SirenEffect == true)
+                    {
+                        boats[i].SirenEffect = false;
+                    }
+                }
+            }
+        }
+        if (TurnScriptSinglePlay.instantiateTurnsingle.TurnCount > fininshTurn4)
+        {
+            stillEffect4 = false;
+            for (i = 0; i < boats.Count; i++)
+            {
+                if (stillEffect4 == false && boats[i].number == 4)
+                {
+                    if (boats[i].SirenEffect == true)
+                    {
+                        boats[i].SirenEffect = false;
+                    }
+                }
+            }
+        }
+        
 
     }
+
+
+
     public void SirenEffect()
     {
         for (i = 0; i < 4; i++)
@@ -139,8 +203,8 @@ public class FruitSiren : MonoBehaviour
                     if (boats[i].number == 2 && boats[i].SirenEffect == true)
                     {
                        
-                        currentTurnUsed = TurnScriptSinglePlay.instantiateTurnsingle.TurnCount;
-                        fininshTurn = currentTurnUsed + 1;
+                        currentTurnUsed2 = TurnScriptSinglePlay.instantiateTurnsingle.TurnCount;
+                        fininshTurn2 = currentTurnUsed2 + 1;
                         stillEffect2 =true;
                     }
                     
@@ -149,8 +213,8 @@ public class FruitSiren : MonoBehaviour
                 {
                     if (boats[i].number == 3 && boats[i].SirenEffect == true)
                     {
-                        currentTurnUsed = TurnScriptSinglePlay.instantiateTurnsingle.TurnCount;
-                        fininshTurn = currentTurnUsed + 1;
+                        currentTurnUsed3 = TurnScriptSinglePlay.instantiateTurnsingle.TurnCount;
+                        fininshTurn3 = currentTurnUsed3 + 1;
                         stillEffect3 = true;
                     }
                     
@@ -159,8 +223,8 @@ public class FruitSiren : MonoBehaviour
                 {
                     if (boats[i].number == 4 && boats[i].SirenEffect == true)
                     {
-                        currentTurnUsed = TurnScriptSinglePlay.instantiateTurnsingle.TurnCount;
-                        fininshTurn = currentTurnUsed + 1;
+                        currentTurnUsed4 = TurnScriptSinglePlay.instantiateTurnsingle.TurnCount;
+                        fininshTurn4 = currentTurnUsed4 + 1;
                         stillEffect4 = true;
                     }
                     
